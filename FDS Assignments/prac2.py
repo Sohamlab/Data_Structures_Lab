@@ -388,7 +388,21 @@ int row_num, col_num,i,j,sum=0;
  }
       
       
-  matt sum
+  matt py
+
+rownum = int(input("Give row number: "))
+colnum = int(input("Give col number: "))
+mat = []
+for i in range(rownum):
+  row = []
+  for j in range(colnum):
+    num = int(input("Give element"))
+    row.append(num)
+  mat.append(row)
+  
+print("THE MATRIX IS: ",mat)
+  
+  
 
 
 

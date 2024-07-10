@@ -6,23 +6,27 @@ def accept_data(A):
 
 def show_data(A):
     n = len(A)
-    print("Student's Marks list is as follows :",end = "")
-    for i in range(n-1):
-        print(A[i], end=",")
-    print("%s"%A[n-1])
+    print("Student's Marks list is as follows :")
+    for i in range(n):
+        if (A[i] != -1):
+            print("Marks of student %d :"%(i+1),A[i])
+        else:
+            print("Marks of student %d :"%(i+1),"Absent")
 
 def average(A):
-    avg = 0
-    sum = 0
-    for i in range(len(A)):
-        if A[i] != -1:
-            sum += A[i]
-        n = len(A)
-        if n != 0:
-            avg = sum/n
-            return avg
-        else:
-            return 0
+    summ = 0
+    count = 0
+    for mark in A:
+        if mark != -1:
+            summ += mark
+            count += 1
+    print(count,summ)
+    if count!=0:
+        avg = summ/count
+        return avg
+    else:
+        return 0
+
 
 def maxscore(A):
     max_score = 0
@@ -34,7 +38,7 @@ def maxscore(A):
 def minscore(A):
     min_score = A[0]
     for i in range(len(A)):
-        if A[i] < min_score:
+        if A[i] < min_score and A[i] != -1:
             min_score = A[i]
     return min_score
 
@@ -47,6 +51,7 @@ def absent(A):
 
 def freq(A):
     highfreq = 0
+    freq = 0
     for i in range(len(A)):
         for j in range(len(A)):
             if  A[i] == A[j]:
@@ -54,14 +59,14 @@ def freq(A):
 
         if freq > highfreq:
             highfreq = freq
+            hmarks = A[i]
+        freq = 0   
 
-    return highfreq
+    return (highfreq,hmarks)
 
 def main():
-
+    students = []
     while True:
-        
-        students = []
 
         print("1 - Accept Information")
         print("2 - The Average Score of the Class ")
@@ -75,7 +80,6 @@ def main():
         if (ch == 1):
             accept_data(students)
             show_data(students)
-
         
         elif (ch == 2):
             ans = average(students)
@@ -94,8 +98,8 @@ def main():
             print("The Number of Students Absent for the Test is : ",count)
 
         elif (ch == 5):
-            hfreq_marks = freq(students)
-            print("The Marks with Highest Frequency are: ",hfreq_marks)
+            (hfreq_marks,hmarks) = freq(students)
+            print("The Marks with Highest Frequency of ",hfreq_marks,"are: ",hmarks)
 
         elif (ch == 6):
             print("End of Program!!")
